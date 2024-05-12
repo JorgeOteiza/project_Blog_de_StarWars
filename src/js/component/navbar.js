@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Navbar = () => {
   return (
     <nav className="navbar-light bg-black mb-5">
-      <div className="navbar mx-5">
+      <div className="navbar mx-5 px-5">
       <Link to="/">
         <span className="navbar-brand my-3 h1">
           <img
