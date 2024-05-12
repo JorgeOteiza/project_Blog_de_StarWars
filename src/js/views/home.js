@@ -19,7 +19,7 @@ export const Home = () => (
             <p className="card-text">
               identificar a c/u con su fetch/id
             </p>
-            <div className="container learnmore-fav">
+            <div className="learnmore-fav container d-flex justify-content-between">
 
               <button type="button" class="btn btn-outline-primary">Learn more!</button>
               <button class="btn btn-primary" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
@@ -34,7 +34,7 @@ export const Home = () => (
             <p className="card-text">
               dirigir contenido a single y crear buttons "leer más" y "agregar a favoritos"
             </p>
-            <div className="container learnmore-fav">
+            <div className="learnmore-fav container d-flex justify-content-between">
 
               <button type="button" class="btn btn-outline-primary">Learn more!</button>
               <button class="btn btn-primary" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
@@ -49,7 +49,7 @@ export const Home = () => (
             <p className="card-text">
               crear nuevo archivo y ruta en layout para favoritos.
             </p>
-            <div className="container learnmore-fav">
+            <div className="learnmore-fav container d-flex justify-content-between">
 
               <button type="button" class="btn btn-outline-primary">Learn more!</button>
               <button class="btn btn-primary" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
