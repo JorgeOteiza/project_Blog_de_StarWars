@@ -9,7 +9,7 @@ import "../../styles/home.css";
 export const Home = () => (
   <div className="container">
     <div className="row">
-      <div className="col-md-12">
+      <div className="col-md-12 bg-light">
         <h1 className="text-center my-5">Star Wars Blog</h1>
       </div>
     </div>
@@ -39,7 +39,7 @@ export const Home = () => (
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 
-              <button type="button" class="btn btn-outline-primary">Learn more!</button>
+              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Learn more!</Link>
               <button class="btn btn-outline-warning bg-light" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
 
             </div>
@@ -54,7 +54,7 @@ export const Home = () => (
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 
-              <button type="button" class="btn btn-outline-primary">Learn more!</button>
+              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Learn more!</Link>
               <button class="btn btn-outline-warning bg-light" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
 
             </div>
