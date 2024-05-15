@@ -10,7 +10,7 @@ export const Home = () => (
   <div className="container">
     <div className="row">
       <div className="col-md-12 bg-light">
-        <h1 className="text-center my-5">Star Wars Blog</h1>
+        <h1 className="text-center my-5">Blog de Star Wars</h1>
       </div>
     </div>
     <div className="card-container">
@@ -18,13 +18,13 @@ export const Home = () => (
         <div className="card col-md-4 mb-3 mx-3 position-relative">
           <img className="card-img-top" src="https://starwars-visualguide.com/assets/img/categories/character.jpg" alt="Card image cap" />
           <div className="card-body">
-            <h5 className="card-title">Entity</h5>
+            <h5 className="card-title">Entidades</h5>
             <p className="card-text mb-5">
-              Personajes
+              Datos
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 
-              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Learn more!</Link>
+              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Leer más!</Link>
               <button class="btn btn-outline-warning bg-light" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
 
             </div>
@@ -33,13 +33,13 @@ export const Home = () => (
         <div className="card col-md-4 mb-3 mx-3 position-relative">
           <img className="card-img-top" src="https://starwars-visualguide.com/assets/img/categories/vehicles.jpg" alt="Card image cap" />
           <div className="card-body">
-            <h5 className="card-title">vehicles</h5>
+            <h5 className="card-title">vehículos</h5>
             <p className="card-text mb-5">
               Vehículos
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 
-              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Learn more!</Link>
+              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Leer más!</Link>
               <button class="btn btn-outline-warning bg-light" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
 
             </div>
@@ -48,13 +48,13 @@ export const Home = () => (
         <div className="card col-md-4 mb-3 mx-3 position-relative">
           <img className="card-img-top" src="https://starwars-visualguide.com/assets/img/categories/planets.jpg" alt="Card image cap" />
           <div className="card-body">
-            <h5 className="card-title">Planets</h5>
+            <h5 className="card-title">Planetas</h5>
             <p className="card-text mb-5">
               Planetas
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 
-              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Learn more!</Link>
+              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Leer más!</Link>
               <button class="btn btn-outline-warning bg-light" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
 
             </div>
