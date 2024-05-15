@@ -5,7 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./views/home";
 import Single from "./views/single";
 import injectContext from "./store/appContext";
-import { SingleCharacter } from "./views/SingleCharacter.jsx";
+import SingleCharacter from "./views/SingleCharacter.jsx";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
@@ -18,8 +18,8 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Routes>
-					
-					<Route path="/" element={<favorites />} />
+
+						<Route path="/" element={<favorites />} />
 						<Route path="/" element={<Home />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
