@@ -1,13 +1,16 @@
 
 import React from "react";
+import App from '../App';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./views/home";
-import Single from "./views/single";
-import injectContext from "./store/appContext";
-import SingleCharacter from "./views/SingleCharacter.jsx";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import ScrollToTop from "./component/scrollToTop";
+import injectContext from "./store/appContext";
+import Single from "./views/single";
+import SingleCharacter from "./views/SingleCharacter.jsx";
+import SingleVehicle from "./views/SingleVehicle.jsx";
+import SinglePlanet from "./views/SinglePlanet.jsx";
 
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
@@ -18,12 +21,12 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Routes>
-
-						<Route path="/" element={<favorites />} />
 						<Route path="/" element={<Home />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
-						<Route path="/characters/:characterId" element={<SingleCharacter />} />
+						<Route exact path="/character/:id" component={SingleCharacter} />
+						<Route path="/vehicles/:id" component={SingleVehicle} />
+						<Route path="/planets/:id" component={SinglePlanet} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>

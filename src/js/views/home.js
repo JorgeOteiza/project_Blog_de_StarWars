@@ -24,7 +24,7 @@ export const Home = () => (
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 
-              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Leer más!</Link>
+              <Link to={`/entity/${getProductId('entity')}`} className="btn btn-outline-primary">Leer más!</Link>
               <button class="btn btn-outline-warning bg-light" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
 
             </div>
@@ -39,7 +39,7 @@ export const Home = () => (
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 
-              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Leer más!</Link>
+              <Link to={`/vehicle/${getProductId('vehicle')}`} className="btn btn-outline-primary">Leer más!</Link>
               <button class="btn btn-outline-warning bg-light" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
 
             </div>
@@ -54,7 +54,7 @@ export const Home = () => (
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 
-              <Link to={`/single/${getProductId(window.location.pathname)}`} className="btn btn-outline-primary">Leer más!</Link>
+              <Link to={`/planet/${getProductId('planet')}`} className="btn btn-outline-primary">Leer más!</Link>
               <button class="btn btn-outline-warning bg-light" type="submit"><FontAwesomeIcon icon={faHeart} /></button>
 
             </div>
@@ -64,3 +64,5 @@ export const Home = () => (
     </div>
   </div>
 );
+
+export default Home;
