@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { getProductId } from "../utils";
 import Card from "./card.js";
-import "../../styles/home.css";
+
 
 export const Home = () => (
   <div className="container">
     <div className="row">
-      <div className="col-md-12 bg-light">
-        <h1 className="text-center my-5">Blog de Star Wars</h1>
+      <div className="col-md-12">
+        <h1 className="text-center my-5 link-danger opacity-50">Blog de Star Wars</h1>
       </div>
     </div>
     <div className="card-container">
@@ -20,7 +20,7 @@ export const Home = () => (
           <div className="card-body">
             <h5 className="card-title">Entidades</h5>
             <p className="card-text mb-5">
-              Datos
+              Rellenar datos
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 
@@ -35,7 +35,7 @@ export const Home = () => (
           <div className="card-body">
             <h5 className="card-title">vehículos</h5>
             <p className="card-text mb-5">
-              Vehículos
+              Rellenar datos / Cambiar los estilos
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 
@@ -50,7 +50,7 @@ export const Home = () => (
           <div className="card-body">
             <h5 className="card-title">Planetas</h5>
             <p className="card-text mb-5">
-              Planetas
+              Rellenar datos / Cambiar estilos / Crear card single/id
             </p>
             <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
 

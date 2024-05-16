@@ -11,6 +11,8 @@ import Single from "./views/single";
 import SingleCharacter from "./views/SingleCharacter.jsx";
 import SingleVehicle from "./views/SingleVehicle.jsx";
 import SinglePlanet from "./views/SinglePlanet.jsx";
+import "../styles/home.css";
+import "../styles/twinkling.css";
 
 const Layout = () => {
 	const basename = process.env.BASENAME || "";

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../styles/navbar.css";
 
 export const Navbar = () => {
   return (
@@ -17,9 +18,7 @@ export const Navbar = () => {
         </Link>
         <div className="ml-auto my-3">
           <Link to="/favorites">
-            <button className="btn btn-primary dropdown-toggle">
-              Favoritos
-            </button>
+            <button className="button-26 dropdown-toggle opacity-75" role="button">Favoritos</button>
           </Link>
         </div>
       </div>
