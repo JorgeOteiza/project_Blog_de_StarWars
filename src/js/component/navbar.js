@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useFavorites } from "../store/favorites.Context.jsx";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
+  const { favorites } = useFavorites();
+
   return (
     <nav className="navbar-light bg-black mb-3">
       <div className="navbar mx-5 px-5">
@@ -18,7 +21,9 @@ export const Navbar = () => {
         </Link>
         <div className="ml-auto my-3">
           <Link to="/favorites">
-            <button className="button-26 dropdown-toggle opacity-75" role="button">Favoritos</button>
+            <button className="button-26 dropdown-toggle opacity-75" role="button">
+              Favoritos ({favorites.length})
+            </button>
           </Link>
         </div>
       </div>
