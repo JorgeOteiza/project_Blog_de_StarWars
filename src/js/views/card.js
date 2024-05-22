@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useFavorites } from "../store/favorites.Context.jsx";
 
-const Card = ({ item, type }) => {
+const Card = ({ item }) => {
   const { addFavorite } = useFavorites();
 
   return (
@@ -14,7 +14,7 @@ const Card = ({ item, type }) => {
         <h5 className="card-title">{item.title}</h5>
         <p className="card-text mb-5">{item.description}</p>
         <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
-          <Link to={`/entity/${item.id}`} className="btn btn-outline-primary shadow-lg bg-gradient">
+          <Link to={`/${item.type}/${item.id}`} className="btn btn-outline-primary shadow-lg bg-gradient">
             Leer más!
           </Link>
           <button className="btn btn-outline-warning bg-light" onClick={() => addFavorite(item)}>

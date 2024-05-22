@@ -1,7 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useFavorites } from "../store/favorites.Context.jsx";
 import Card from "../views/card.js";
 
@@ -43,7 +40,7 @@ export const Home = () => {
       <div className="card-container">
         <div className="col-md-12 container d-flex justify-content-around my-5 py-3 row-cols-lg-4 w-auto">
           {cardData.map(item => (
-            <Card key={item.id} item={item} type={item.type} />
+            <Card key={item.id} item={item} />
           ))}
         </div>
       </div>

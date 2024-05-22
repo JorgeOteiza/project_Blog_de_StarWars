@@ -5,7 +5,6 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
 import injectContext from "./store/appContext";
-import Single from "./views/single";
 import SingleCharacter from "./views/SingleCharacter.jsx";
 import SingleVehicle from "./views/SingleVehicle.jsx";
 import SinglePlanet from "./views/SinglePlanet.jsx";
@@ -23,11 +22,10 @@ const Layout = () => {
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/single/:theid" element={<Single />} />
-						<Route path="*" element={<h1>Not found!</h1>} />
 						<Route path="/character/:id" component={SingleCharacter} />
 						<Route path="/vehicles/:id" component={SingleVehicle} />
 						<Route path="/planets/:id" component={SinglePlanet} />
+						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>
