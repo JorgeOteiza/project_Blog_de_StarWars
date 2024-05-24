@@ -5,10 +5,12 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
 import injectContext from "./store/appContext";
+import CharacterList from "./views/CharacterList.jsx";
+import VehicleList from "./views/VehicleList.jsx";
+import PlanetList from "./views/PlanetList.jsx";
 import SingleCharacter from "./views/SingleCharacter.jsx";
 import SingleVehicle from "./views/SingleVehicle.jsx";
 import SinglePlanet from "./views/SinglePlanet.jsx";
-import FavoritesProvider from "./store/favorites.Context.jsx";
 import "../styles/home.css";
 import "../styles/twinkling.css";
 
@@ -22,6 +24,9 @@ const Layout = () => {
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} />
+						<Route path="/characters" element={<CharacterList />} />
+						<Route path="/vehicles" element={<VehicleList />} />
+						<Route path="/planets" element={<PlanetList />} />
 						<Route path="/character/:id" component={SingleCharacter} />
 						<Route path="/vehicles/:id" component={SingleVehicle} />
 						<Route path="/planets/:id" component={SinglePlanet} />

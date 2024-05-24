@@ -1,6 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			items: [
+
+			],
 			demo: [
 				{
 					title: "FIRST",
@@ -15,6 +18,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+
+			getItemById: async (id) => {
+				const store = getStore();
+				return store.items.find(item => item.id === id);
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

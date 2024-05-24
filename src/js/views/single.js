@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import { useSwapi } from "react-swapi";
@@ -7,26 +7,30 @@ import Card from "./card.js";
 
 const Single = () => {
 	const { store, actions } = useContext(Context);
-	const params = useParams();
-	const characterId = params.theid;
-	const [character, setCharacter] = useState(null);
+	const { id } = useParams();
+	const [item, setItem] = useState(null);
 
-	const { data, isLoading, error } = useSwapi("people", { id: characterId });
+	const { data, isLoading, error } = useSwapi("people", "vehicle", "planet", { id: item });
 
 	useEffect(() => {
-		if (data) {
-			setCharacter(data.result.properties);
-		}
-	}, [data]);
+		const fetchData = async () => {
+			const data = await actions.getItemById(id);
+			setItem(data);
+		};
+
+		fetchData();
+	}, [id, actions]);
+
+	if (!item) {
+		return <div>Loading...</div>;
+	}
 
 	return (
-		<div className="jumbotron mx-5">
-			{isLoading && <p>Loading...</p>}
-			{error && <p>Error: {error.message}</p>}
-			{character && <Card character={character} />}
-			<hr className="my-4" />
+		<div className="container">
+			<h1>{item.name}</h1>
+			<p>{item.description}</p>
 			<Link to="/">
-				<span className="btn btn-primary btn-lg" href="#" role="button">
+				<span className="btn btn-primary btn-lg" role="button">
 					Back home
 				</span>
 			</Link>

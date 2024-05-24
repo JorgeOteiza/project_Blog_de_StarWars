@@ -4,8 +4,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useFavorites } from "../store/favorites.Context.jsx";
 
-const Card = ({ item }) => {
+const Card = ({ item, type }) => {
   const { addFavorite } = useFavorites();
+
+  let path = "";
+  switch (type) {
+    case "character":
+      path = `/character/${item.id}`;
+      break;
+    case "vehicle":
+      path = `/vehicle/${item.id}`;
+      break;
+    case "planet":
+      path = `/planet/${item.id}`;
+      break;
+    default:
+      path = "#";
+  }
 
   return (
     <div className="card col-md-4 mb-3 mx-3 position-relative border-info">
@@ -14,7 +29,7 @@ const Card = ({ item }) => {
         <h5 className="card-title">{item.title}</h5>
         <p className="card-text mb-5">{item.description}</p>
         <div className="learnmore-fav container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
-          <Link to={`/${item.type}/${item.id}`} className="btn btn-outline-primary shadow-lg bg-gradient">
+          <Link to={path} className="btn btn-outline-primary shadow-lg bg-gradient">
             Leer más!
           </Link>
           <button className="btn btn-outline-warning bg-light" onClick={() => addFavorite(item)}>
