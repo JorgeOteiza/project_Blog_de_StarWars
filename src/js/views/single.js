@@ -3,7 +3,6 @@ import { useParams, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import { useSwapi } from "react-swapi";
-import Card from "./card.js";
 
 const Single = () => {
 	const { store, actions } = useContext(Context);

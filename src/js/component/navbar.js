@@ -25,8 +25,8 @@ export const Navbar = () => {
         </Link>
         <div className="ml-auto my-3">
           <div className="dropdown">
-            <button className="button-26 dropdown-toggle opacity-75" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-              Favoritos ({favorites.length})
+            <button className="border-danger button-26 dropdown-toggle opacity-75" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              Favoritos {favorites.length}
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {Array.isArray(favorites) && favorites.map((favorite, index) => (

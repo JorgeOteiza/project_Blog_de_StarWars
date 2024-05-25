@@ -30,17 +30,17 @@ const CharacterList = () => {
   };
 
   return (
-    <div>
-      <h1>Characters</h1>
+    <div className="List-content mx-3 px-3">
+      <h1 className="bg-gradient text-center text-danger">Characters</h1>
       <div className="row">
         {characters.map(character => (
           <div className="col-md-4" key={character.uid}>
             <div className="card mb-4">
-              <h5 className="card-title">{character.name}</h5>
+              <h5 className="card-title mb-5 text-info">{character.name}</h5>
               <img className="card-img-top" src={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`} alt={character.name} />
               <div className="card-body">
-                <div className="container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
-                  <Link to={`/character/${character.uid}`} className="btn btn-primary">Details</Link>
+                <div className="container d-flex justify-content-between bottom-0 mb-2 position-absolute start-0">
+                  <Link to={`/character/${character.uid}`} className="btn border-primary btn-outline-danger btn-outline-light">Details</Link>
                   <button className="btn btn-outline-warning bg-light" onClick={() => toggleFavorite(character)}>
                     <FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(character) ? 'red' : 'gray' }} /> {/* Cambia el color del corazón si el personaje está en favoritos */}
                   </button>

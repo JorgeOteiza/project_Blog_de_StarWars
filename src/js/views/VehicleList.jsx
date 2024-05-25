@@ -16,17 +16,17 @@ const VehicleList = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Vehicles</h1>
-      <div className="row">
+    <div className="List-content mx-3 px-3">
+      <h1 className="bg-gradient text-center text-danger">Vehicles</h1>
+      <div className="row shadowback p-3">
         {vehicles.map(vehicle => (
           <div className="col-md-4" key={vehicle.uid}>
-            <div className="card mb-4">
+            <div className="card mb-4 bg-transparent border">
               <img className="card-img-top" src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`} alt={vehicle.name} />
               <div className="card-body">
-                <h5 className="card-title">{vehicle.name}</h5>
-                <div className="container d-flex justify-content-between bottom-0 mb-1 position-absolute start-0">
-                  <Link to={`/vehicle/${vehicle.uid}`} className="btn btn-primary">Details</Link>
+                <h5 className="card-title mb-5 text-info">{vehicle.name}</h5>
+                <div className="container d-flex justify-content-between bottom-0 mb-2 position-absolute start-0">
+                  <Link to={`/vehicle/${vehicle.uid}`} className="btn border-primary btn-outline-danger btn-outline-light">Details</Link>
                   <button className="btn btn-outline-warning bg-light" onClick={() => addFavorite(vehicle)}>
                     <FontAwesomeIcon icon={faHeart} />
                   </button>
