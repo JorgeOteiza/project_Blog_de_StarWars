@@ -10,13 +10,13 @@ const Card = ({ item, type }) => {
   let path = "";
   switch (type) {
     case "character":
-      path = `/character/${item.id}`;
+      path = `/characters/${item.id}`;
       break;
     case "vehicle":
-      path = `/vehicle/${item.id}`;
+      path = `/vehicles/${item.id}`;
       break;
     case "planet":
-      path = `/planet/${item.id}`;
+      path = `/planets/${item.id}`;
       break;
     default:
       path = "#";

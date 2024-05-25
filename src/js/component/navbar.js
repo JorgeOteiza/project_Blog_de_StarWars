@@ -1,6 +1,10 @@
-import React, { useContext } from "react";
+// Navbar.jsx
+
+import React from "react";
 import { Link } from "react-router-dom";
 import { useFavorites } from "../store/favorites.Context.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
@@ -20,11 +24,18 @@ export const Navbar = () => {
           </span>
         </Link>
         <div className="ml-auto my-3">
-          <Link to="/favorites">
-            <button className="button-26 dropdown-toggle opacity-75" role="button">
+          <div className="dropdown">
+            <button className="button-26 dropdown-toggle opacity-75" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               Favoritos ({favorites.length})
             </button>
-          </Link>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {Array.isArray(favorites) && favorites.map((favorite, index) => (
+                <li key={index}>
+                  <Link to={`/favorite/${index}`} className="dropdown-item">{favorite.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </nav>

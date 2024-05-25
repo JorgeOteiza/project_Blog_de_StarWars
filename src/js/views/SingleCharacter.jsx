@@ -1,39 +1,32 @@
+
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const SingleCharacter = () => {
     const { id } = useParams();
     const [character, setCharacter] = useState(null);
-    const [starship, setStarship] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchCharacter = async () => {
-            try {
-                const response = await fetch(`https://www.swapi.tech/api/people/${id}`);
-                const data = await response.json();
-                setCharacter(data.result.properties);
-
-                if (data.result.properties.starships.length > 0) {
-                    const starshipResponse = await fetch(data.result.properties.starships[0]);
-                    const starshipData = await starshipResponse.json();
-                    setStarship(starshipData.result.properties);
-                } else {
-                    setStarship(null);
+        fetch(`https://www.swapi.tech/api/people/${id}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCharacter();
-    }, [id]);
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+                return response.json();
+            })
+            .then(data => {
+                if (data.result) {
+                    setCharacter(data.result.properties);
+                } else {
+                    navigate('/404');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                navigate('/404');
+            });
+    }, [id, navigate]);
 
     return character ? (
         <div>

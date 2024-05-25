@@ -11,6 +11,7 @@ import PlanetList from "./views/PlanetList.jsx";
 import SingleCharacter from "./views/SingleCharacter.jsx";
 import SingleVehicle from "./views/SingleVehicle.jsx";
 import SinglePlanet from "./views/SinglePlanet.jsx";
+import Favorites from "./component/favorites.jsx";
 import "../styles/home.css";
 import "../styles/twinkling.css";
 
@@ -27,9 +28,10 @@ const Layout = () => {
 						<Route path="/characters" element={<CharacterList />} />
 						<Route path="/vehicles" element={<VehicleList />} />
 						<Route path="/planets" element={<PlanetList />} />
-						<Route path="/character/:id" component={SingleCharacter} />
-						<Route path="/vehicles/:id" component={SingleVehicle} />
-						<Route path="/planets/:id" component={SinglePlanet} />
+						<Route path="/characters/:id" element={SingleCharacter} />
+						<Route path="/vehicles/:id" elementt={SingleVehicle} />
+						<Route path="/planets/:id" element={SinglePlanet} />
+						<Route path="/favorites" element={<Favorites />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />

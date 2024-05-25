@@ -1,4 +1,3 @@
-// src/js/store/favoritesContext.js
 import React, { createContext, useState, useContext } from "react";
 
 const FavoritesContext = createContext();
@@ -8,17 +7,24 @@ export const useFavorites = () => {
 };
 
 export const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState({
+    characters: [],
+    vehicles: [],
+    planets: []
+  });
 
-
-  const addFavorite = (item) => {
-    setFavorites((prevFavorites) => [...prevFavorites, item]);
+  const addFavorite = (item, type) => {
+    setFavorites(prevFavorites => ({
+      ...prevFavorites,
+      [type]: [...prevFavorites[type], item]
+    }));
   };
 
-  const removeFavorite = (item) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.filter((fav) => fav !== item)
-    );
+  const removeFavorite = (item, type) => {
+    setFavorites(prevFavorites => ({
+      ...prevFavorites,
+      [type]: prevFavorites[type].filter(fav => fav.id !== item.id)
+    }));
   };
 
   return (
