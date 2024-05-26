@@ -23,11 +23,11 @@ export const Navbar = () => {
         </Link>
         <div className="ml-auto my-3">
           <div className="dropdown">
-            <button className="border-danger button-26 dropdown-toggle opacity-75" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-              Favoritos {allFavorites.length}
+            <button className="border-danger button-26 font-monospace dropdown-toggle opacity-75" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              Favorites {allFavorites.length}
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {allFavorites.length > 0 ? (
+              {allFavorites.length > [] ? (
                 allFavorites.map((favorite, index) => (
                   <li key={index} className="dropdown-item d-flex justify-content-between align-items-center">
                     <Link to={`/${favorite.type}/${favorite.id}`} className="dropdown-item">

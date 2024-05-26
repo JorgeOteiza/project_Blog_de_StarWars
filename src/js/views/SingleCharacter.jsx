@@ -20,7 +20,7 @@ const SingleCharacter = () => {
             })
             .then(data => {
                 if (data.result) {
-                    setCharacter(data.result.properties);
+                    setCharacter({ ...data.result.properties, type: "character", id: data.result._id });
                 } else {
                     navigate('/404');
                 }
