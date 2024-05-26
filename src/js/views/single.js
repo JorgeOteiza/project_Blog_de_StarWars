@@ -2,23 +2,35 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
-import { useSwapi } from "react-swapi";
 
 const Single = () => {
 	const { store, actions } = useContext(Context);
 	const { id } = useParams();
 	const [item, setItem] = useState(null);
 
-	const { data, isLoading, error } = useSwapi("people", "vehicle", "planet", { id: item });
-
 	useEffect(() => {
 		const fetchData = async () => {
-			const data = await actions.getItemById(id);
-			setItem(data);
+			// Intentamos obtener el item del contexto de la aplicación
+			const foundItem = store.items.find(item => item.id === id);
+			if (foundItem) {
+				setItem(foundItem);
+			} else {
+				// Si el item no está en el contexto, hacemos una llamada a la API
+				try {
+					const response = await fetch(`https://www.swapi.tech/api/people/${id}`);
+					if (!response.ok) {
+						throw new Error("Network response was not ok");
+					}
+					const data = await response.json();
+					setItem(data.result.properties);
+				} catch (error) {
+					console.error(error);
+				}
+			}
 		};
 
 		fetchData();
-	}, [id, actions]);
+	}, [id, store.items]);
 
 	if (!item) {
 		return <div>Loading...</div>;

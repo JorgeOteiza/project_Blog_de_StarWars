@@ -44,7 +44,7 @@ const SingleVehicle = () => {
   };
 
   return vehicle ? (
-    <div>
+    <div className="container mx-5 px-5 w-100 h-auto">
       <h1>{vehicle.name}</h1>
       <p>Model: {vehicle.model}</p>
       <p>Manufacturer: {vehicle.manufacturer}</p>

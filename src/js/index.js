@@ -4,6 +4,8 @@ import Layout from './layout.js'
 import { FavoritesProvider } from './store/favorites.Context.jsx';
 import "../styles/home.css";
 import "../styles/twinkling.css";
+import '../styles/index.css';
+
 
 
 const appElement = document.querySelector("#app");

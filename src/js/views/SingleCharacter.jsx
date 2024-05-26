@@ -1,35 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useFavorites } from "../store/favorites.Context.jsx";
+import { Context } from "../store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useFavorites } from "../store/favorites.Context.jsx";
 
 const SingleCharacter = () => {
     const { id } = useParams();
+    const { store, actions } = useContext(Context);
     const { addFavorite, removeFavorite, favorites } = useFavorites();
     const [character, setCharacter] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`https://www.swapi.tech/api/people/${id}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.result) {
-                    setCharacter({ ...data.result.properties, type: "character", id: data.result._id });
-                } else {
-                    navigate('/404');
-                }
-            })
-            .catch(err => {
-                console.error(err);
+        const fetchCharacter = async () => {
+            const data = await actions.getItemById('people', id);
+            if (data) {
+                setCharacter(data);
+            } else {
                 navigate('/404');
-            });
-    }, [id, navigate]);
+            }
+        };
+
+        fetchCharacter();
+    }, [id, actions, navigate]);
 
     const isFavorite = (character) => {
         return favorites.characters.some((fav) => fav.name === character.name);
@@ -44,7 +38,7 @@ const SingleCharacter = () => {
     };
 
     return character ? (
-        <div>
+        <div className="container mx-5 px-5 w-100 h-auto">
             <h1>{character.name}</h1>
             <p>Height: {character.height}</p>
             <p>Mass: {character.mass}</p>

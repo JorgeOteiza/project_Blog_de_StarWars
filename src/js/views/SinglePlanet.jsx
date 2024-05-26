@@ -44,7 +44,7 @@ const SinglePlanet = () => {
   };
 
   return planet ? (
-    <div>
+    <div className="container mx-5 px-5 w-100 h-auto">
       <h1>{planet.name}</h1>
       <p>Climate: {planet.climate}</p>
       <p>Diameter: {planet.diameter}</p>
