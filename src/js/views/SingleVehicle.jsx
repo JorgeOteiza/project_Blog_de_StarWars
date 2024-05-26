@@ -1,46 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useFavorites } from "../store/favorites.Context.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const SingleVehicle = () => {
-  const { id } = useParams(); // Obteniendo el ID del vehículo desde la URL
+  const { id } = useParams();
+  const { addFavorite, removeFavorite, favorites } = useFavorites();
   const [vehicle, setVehicle] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://www.swapi.tech/api/vehicles/${id}`)
-      .then(res => res.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
-        setVehicle(data.result.properties);
-        setLoading(false);
+        if (data.result) {
+          setVehicle(data.result.properties);
+        } else {
+          navigate('/404');
+        }
       })
       .catch(err => {
         console.error(err);
-        setLoading(false);
+        navigate('/404');
       });
-  }, [id]);
+  }, [id, navigate]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const isFavorite = (vehicle) => {
+    return favorites.vehicles.some((fav) => fav.name === vehicle.name);
+  };
 
-  return (
+  const handleAddFavorite = (vehicle) => {
+    if (isFavorite(vehicle)) {
+      removeFavorite(vehicle, 'vehicles');
+    } else {
+      addFavorite(vehicle, 'vehicles');
+    }
+  };
+
+  return vehicle ? (
     <div>
-      {vehicle ? (
-        <div>
-          <h1>{vehicle.name}</h1>
-          <p><strong>Model:</strong> {vehicle.model}</p>
-          <p><strong>Manufacturer:</strong> {vehicle.manufacturer}</p>
-          <p><strong>Cost:</strong> {vehicle.cost_in_credits} credits</p>
-          <p><strong>Length:</strong> {vehicle.length} meters</p>
-          <p><strong>Crew:</strong> {vehicle.crew}</p>
-          <p><strong>Passengers:</strong> {vehicle.passengers}</p>
-          <p><strong>Max Speed:</strong> {vehicle.max_atmosphering_speed}</p>
-          {/* Añade más propiedades según sea necesario */}
-        </div>
-      ) : (
-        <div>Vehicle not found</div>
-      )}
+      <h1>{vehicle.name}</h1>
+      <p>Model: {vehicle.model}</p>
+      <p>Manufacturer: {vehicle.manufacturer}</p>
+      <p>Cost in Credits: {vehicle.cost_in_credits}</p>
+      <p>Length: {vehicle.length}</p>
+      <p>Max Atmosphering Speed: {vehicle.max_atmosphering_speed}</p>
+      <p>Crew: {vehicle.crew}</p>
+      <p>Passengers: {vehicle.passengers}</p>
+      <button className="btn btn-outline-warning bg-light" onClick={() => handleAddFavorite(vehicle)}>
+        <FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(vehicle) ? 'red' : 'gray' }} />
+      </button>
     </div>
+  ) : (
+    <p>Loading...</p>
   );
 };
 

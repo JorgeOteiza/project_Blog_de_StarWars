@@ -1,33 +1,28 @@
 import React from "react";
-import { useFavorites } from "../store/favorites.Context.jsx";
 import Card from "../views/card.js";
 
 const cardData = [
   {
-    id: 1,
+    id: "characters",
     title: "Entidades",
-    description: "Rellenar datos",
     image: "https://starwars-visualguide.com/assets/img/categories/character.jpg",
     type: "characters"
   },
   {
-    id: 2,
+    id: "vehicles",
     title: "Vehículos",
-    description: "Rellenar datos / Cambiar los estilos",
     image: "https://starwars-visualguide.com/assets/img/categories/vehicles.jpg",
     type: "vehicles"
   },
   {
-    id: 3,
+    id: "planets",
     title: "Planetas",
-    description: "Rellenar datos / Cambiar estilos / Crear card single/id",
     image: "https://starwars-visualguide.com/assets/img/categories/planets.jpg",
     type: "planets"
   }
 ];
 
 export const Home = () => {
-  const { favorites } = useFavorites();
 
 
   return (

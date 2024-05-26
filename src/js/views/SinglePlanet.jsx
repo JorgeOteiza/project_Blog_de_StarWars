@@ -1,44 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useFavorites } from "../store/favorites.Context.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const SinglePlanet = () => {
-  const { id } = useParams(); // Obteniendo el ID del planeta desde la URL
+  const { id } = useParams();
+  const { addFavorite, removeFavorite, favorites } = useFavorites();
   const [planet, setPlanet] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://www.swapi.tech/api/planets/${id}`)
-      .then(res => res.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
-        setPlanet(data.result.properties);
-        setLoading(false);
+        if (data.result) {
+          setPlanet(data.result.properties);
+        } else {
+          navigate('/404');
+        }
       })
       .catch(err => {
         console.error(err);
-        setLoading(false);
+        navigate('/404');
       });
-  }, [id]);
+  }, [id, navigate]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const isFavorite = (planet) => {
+    return favorites.planets.some((fav) => fav.name === planet.name);
+  };
 
-  return (
+  const handleAddFavorite = (planet) => {
+    if (isFavorite(planet)) {
+      removeFavorite(planet, 'planets');
+    } else {
+      addFavorite(planet, 'planets');
+    }
+  };
+
+  return planet ? (
     <div>
-      {planet ? (
-        <div>
-          <h1>{planet.name}</h1>
-          <p><strong>Climate:</strong> {planet.climate}</p>
-          <p><strong>Diameter:</strong> {planet.diameter}</p>
-          <p><strong>Gravity:</strong> {planet.gravity}</p>
-          <p><strong>Population:</strong> {planet.population}</p>
-          <p><strong>Terrain:</strong> {planet.terrain}</p>
-          {/* Añade más propiedades según sea necesario */}
-        </div>
-      ) : (
-        <div>Planet not found</div>
-      )}
+      <h1>{planet.name}</h1>
+      <p>Climate: {planet.climate}</p>
+      <p>Diameter: {planet.diameter}</p>
+      <p>Gravity: {planet.gravity}</p>
+      <p>Population: {planet.population}</p>
+      <p>Terrain: {planet.terrain}</p>
+      <button className="btn btn-outline-warning bg-light" onClick={() => handleAddFavorite(planet)}>
+        <FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(planet) ? 'red' : 'gray' }} />
+      </button>
     </div>
+  ) : (
+    <p>Loading...</p>
   );
 };
 

@@ -3,12 +3,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useFavorites } from "../store/favorites.Context.jsx";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
-  const { favorites } = useFavorites();
+  const { favorites, removeFavorite } = useFavorites();
 
   return (
     <nav className="navbar-light bg-black mb-3">

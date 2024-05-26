@@ -1,9 +1,12 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useFavorites } from "../store/favorites.Context.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const SingleCharacter = () => {
     const { id } = useParams();
+    const { addFavorite, removeFavorite, favorites } = useFavorites();
     const [character, setCharacter] = useState(null);
     const navigate = useNavigate();
 
@@ -28,6 +31,18 @@ const SingleCharacter = () => {
             });
     }, [id, navigate]);
 
+    const isFavorite = (character) => {
+        return favorites.characters.some((fav) => fav.name === character.name);
+    };
+
+    const handleAddFavorite = (character) => {
+        if (isFavorite(character)) {
+            removeFavorite(character, 'characters');
+        } else {
+            addFavorite(character, 'characters');
+        }
+    };
+
     return character ? (
         <div>
             <h1>{character.name}</h1>
@@ -38,6 +53,9 @@ const SingleCharacter = () => {
             <p>Eye Color: {character.eye_color}</p>
             <p>Birth Year: {character.birth_year}</p>
             <p>Gender: {character.gender}</p>
+            <button className="btn btn-outline-warning bg-light" onClick={() => handleAddFavorite(character)}>
+                <FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(character) ? 'red' : 'gray' }} />
+            </button>
         </div>
     ) : (
         <p>Loading...</p>
