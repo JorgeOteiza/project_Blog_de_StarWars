@@ -1,12 +1,13 @@
 body {
-    background: url(http://www.script-tutorials.com/demos/360/images/twinkling.png) top center,
-                url(http://www.script-tutorials.com/demos/360/images/stars.png) top center #000;
-    -moz-animation: move-twink-back 200s linear infinite;
-    -ms-animation: move-twink-back 200s linear infinite;
-    -o-animation: move-twink-back 200s linear infinite;
-    -webkit-animation: move-twink-back 200s linear infinite;
-    animation: move-twink-back 200s linear infinite;
+  background: url(http://www.script-tutorials.com/demos/360/images/twinkling.png)
+      top center,
+    url(http://www.script-tutorials.com/demos/360/images/stars.png) top center
+      #000;
+  -moz-animation: move-twink-back 200s linear infinite;
+  -ms-animation: move-twink-back 200s linear infinite;
+  -o-animation: move-twink-back 200s linear infinite;
+  -webkit-animation: move-twink-back 200s linear infinite;
+  animation: move-twink-back 200s linear infinite;
 
-
-    z-index: -1;
+  z-index: -1;
 }

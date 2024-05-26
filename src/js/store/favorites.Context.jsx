@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 const FavoritesContext = createContext();
 
@@ -12,6 +12,17 @@ export const FavoritesProvider = ({ children }) => {
     vehicles: [],
     planets: []
   });
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+    if (storedFavorites) {
+      setFavorites(storedFavorites);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   const addFavorite = (item, type) => {
     setFavorites(prevFavorites => ({

@@ -4,7 +4,7 @@ import Card from "../views/card.js";
 const cardData = [
   {
     id: "characters",
-    title: "Entidades",
+    title: "Personajes",
     image: "https://starwars-visualguide.com/assets/img/categories/character.jpg",
     type: "characters"
   },
@@ -23,7 +23,6 @@ const cardData = [
 ];
 
 export const Home = () => {
-
 
   return (
     <div className="container">
