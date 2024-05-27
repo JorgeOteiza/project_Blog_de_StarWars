@@ -9,7 +9,7 @@ export const Navbar = () => {
   const allFavorites = [...favorites.characters, ...favorites.vehicles, ...favorites.planets];
 
   return (
-    <nav className="navbar navbar-light bg-black mb-3">
+    <nav className="navbar navbar-light bg-black">
       <div className="navbar mx-5 px-5 w-100">
         <Link to="/">
           <span className="navbar-brand my-3 h1">
@@ -29,8 +29,8 @@ export const Navbar = () => {
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {allFavorites.length > [] ? (
                 allFavorites.map((favorite, index) => (
-                  <li key={index} className="dropdown-item d-flex justify-content-between align-items-center">
-                    <Link to={`/${favorite.type}/${favorite.id}`} className="dropdown-item">
+                  <li key={index} className="align-content-between d-flex dropdown-item justify-content-between p-1">
+                    <Link to={`/${favorite.type}/${favorite.id}`} className="dropdown-item m1 p-1">
                       {favorite.name || favorite.title}
                     </Link>
                     <button className="btn btn-sm btn-danger" onClick={() => removeFavorite(favorite, favorite.type)}>

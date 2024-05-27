@@ -1,6 +1,11 @@
+import { fetchStarWarsData } from '../api';
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			characters: [],
+			planets: [],
+			starships: [],
 			items: [],
 			demo: [
 				{
@@ -16,6 +21,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+
+			loadStarWarsData: async () => {
+				const characters = await fetchStarWarsData('characters');
+				const planets = await fetchStarWarsData('planets');
+				const starships = await fetchStarWarsData('starships');
+				setStore({ characters, planets, starships });
+			},
 
 			getItemById: async (category, id) => {
 				try {

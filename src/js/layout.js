@@ -1,8 +1,9 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import { Home } from "./views/home";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import Single from "./views/single.js";
 import ScrollToTop from "./component/scrollToTop";
 import injectContext from "./store/appContext";
 import CharacterList from "./views/CharacterList.jsx";
@@ -24,6 +25,7 @@ const Layout = () => {
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} />
+						<Route path="/:resource/:id" element={Single} />
 						<Route path="/characters" element={<CharacterList />} />
 						<Route path="/vehicles" element={<VehicleList />} />
 						<Route path="/planets" element={<PlanetList />} />
