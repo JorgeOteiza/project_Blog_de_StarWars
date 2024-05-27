@@ -36,7 +36,7 @@ const PlanetList = () => {
             <div className="card">
               <img className="card-img-top" src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} alt={planet.name} />
               <div className="card-body">
-                <h5 className="card-title mb-5 text-info font-monospace">{planet.name}</h5>
+                <h5 className="card-title mb-5 text-black font-monospace">{planet.name}</h5>
                 <div className="container d-flex justify-content-between bottom-0 mb-2 position-absolute start-0">
                   <Link to={`/planets/${planet.uid}`} className="border-primary btn btn-outline-light btn-success font-monospace">Details</Link>
                   <button className="btn btn-outline-warning bg-light" onClick={() => handleAddFavorite(planet)}>
