@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFavorites } from "../store/favorites.Context.jsx";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
-  const { favorites, removeFavorite } = useFavorites();
+  const { favorites, removeFavorite, setFavorites } = useFavorites();
+  const [localFavorites, setLocalFavorites] = useState(favorites);
 
-  const allFavorites = [...favorites.characters, ...favorites.vehicles, ...favorites.planets];
+  useEffect(() => {
+    const favoritesString = localStorage.getItem("favorites");
+    if (favoritesString) {
+      const favoritesObject = JSON.parse(favoritesString);
+      setFavorites({ ...favorites, ...favoritesObject });
+    }
+  }, []);
+
+  useEffect(() => {
+    setLocalFavorites(favorites);
+  }, [favorites]);
+
+  const allFavorites = [
+    ...localFavorites.characters,
+    ...localFavorites.vehicles,
+    ...localFavorites.planets,
+  ];
 
   return (
     <nav className="navbar navbar-light bg-black">
@@ -29,8 +46,10 @@ export const Navbar = () => {
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {allFavorites.length > 0 ? (
                 allFavorites.map((favorite, index) => (
-                  <li key={index} className="align-content-between d-flex dropdown-item justify-content-between p-1">
-                    {/* Remove the Link component */}
+                  <li
+                    key={index}
+                    className="align-content-between d-flex dropdown-item justify-content-between p-1"
+                  >
                     <span className="dropdown-item m1 p-1">
                       {favorite.name || favorite.title}
                     </span>

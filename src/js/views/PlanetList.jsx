@@ -34,7 +34,7 @@ const PlanetList = () => {
         {planets.map(planet => (
           <div className="col-md-4 p-5" key={planet.uid}>
             <div className="card">
-              <img className="card-img-top" src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} alt={planet.name} />
+              <img className="card-img-top h-100" src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} alt={planet.name} />
               <div className="card-body">
                 <h5 className="card-title mb-5 text-black font-monospace">{planet.name}</h5>
                 <div className="container d-flex justify-content-between bottom-0 mb-2 position-absolute start-0">

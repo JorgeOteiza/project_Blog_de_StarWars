@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
+// favorites.Context.jsx
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const FavoritesContext = createContext();
 
@@ -13,10 +14,25 @@ export const FavoritesProvider = ({ children }) => {
     planets: []
   });
 
+  const addFavorite = (favorite, type) => {
+    setFavorites((prevFavorites) => ({
+      ...prevFavorites,
+      [type]: [...prevFavorites[type], favorite],
+    }));
+  };
+
+  const removeFavorite = (favorite, type) => {
+    setFavorites((prevFavorites) => ({
+      ...prevFavorites,
+      [type]: prevFavorites[type].filter((item) => item !== favorite),
+    }));
+  };
+
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
-    if (storedFavorites) {
-      setFavorites(storedFavorites);
+    const favoritesString = localStorage.getItem("favorites");
+    if (favoritesString) {
+      const favoritesObject = JSON.parse(favoritesString);
+      setFavorites(favoritesObject);
     }
   }, []);
 
@@ -24,30 +40,12 @@ export const FavoritesProvider = ({ children }) => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
-  const addFavorite = (item, type) => {
-    setFavorites(prevFavorites => ({
-      ...prevFavorites,
-      [type]: [...prevFavorites[type], item]
-    }));
-  };
-
-  const removeFavorite = (item, type) => {
-    setFavorites(prevFavorites => ({
-      ...prevFavorites,
-      [type]: prevFavorites[type].filter(fav => fav.id !== item.id)
-    }));
-  };
-
-  const isFavorite = (item) => {
-
-    return favorites[item.type].some(favorite => favorite.name === item.name);
-  };
-
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, setFavorites }}>
       {children}
     </FavoritesContext.Provider>
   );
 };
+
 
 export default FavoritesContext;

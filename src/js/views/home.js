@@ -27,7 +27,7 @@ export const Home = () => {
   return (
     <div className="container">
       <div className="card-container">
-        <div className="col-md-12 container d-flex justify-content-around my-5 py-5 row-cols-lg-4 w-auto">
+        <div className="col-md-12 container d-flex justify-content-around my-5 py-5 row-cols-lg-4 w-auto mx-auto">
           {cardData.map(item => (
             <Card key={item.id} item={item} type={item.type} />
           ))}
