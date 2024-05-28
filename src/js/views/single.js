@@ -8,7 +8,8 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 const Single = () => {
 	const { store, actions } = useContext(Context);
 	const { resource, id } = useParams();
-	const [item, setItem] = useState(null);
+	const [item, setItem, imageUrl, setImageUrl] = useState(null);
+
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -19,6 +20,7 @@ const Single = () => {
 				}
 				const data = await response.json();
 				setItem(data.result.properties);
+				setImageUrl(`https://starwars-visualguide.com/assets/img/${resource}/${id}.jpg`);
 			} catch (error) {
 				console.error(error);
 			}
@@ -58,6 +60,7 @@ const Single = () => {
 						<p className="text-info">Eye Color: <span className="text-white">{item.eye_color}</span></p>
 						<p className="text-info">Birth Year: <span className="text-white">{item.birth_year}</span></p>
 						<p className="text-info">Gender: <span className="text-white">{item.gender}</span></p>
+						<img src={`https://starwars-visualguide.com/assets/img/people/${item.uid}.jpg`} alt={item.name} />
 					</>
 				);
 			case 'vehicles':
@@ -70,6 +73,7 @@ const Single = () => {
 						<p className="text-info">Max Atmosphering Speed: <span className="text-white">{item.max_atmosphering_speed}</span></p>
 						<p className="text-info">Crew: <span className="text-white">{item.crew}</span></p>
 						<p className="text-info">Passengers: <span className="text-white">{item.passengers}</span></p>
+						<img src={`https://starwars-visualguide.com/assets/img/vehicles/${item.uid}.jpg`} alt={item.name} />
 					</>
 				);
 			case 'planets':
@@ -80,6 +84,7 @@ const Single = () => {
 						<p className="text-info">Gravity:  <span className="text-white">{item.gravity}</span></p>
 						<p className="text-info">Population:  <span className="text-white">{item.population}</span></p>
 						<p className="text-info">Terrain:  <span className="text-white">{item.terrain}</span></p>
+						<img src={`https://starwars-visualguide.com/assets/img/planets/${item.uid}.jpg`} alt={item.name} />
 					</>
 				);
 			default:
@@ -88,9 +93,11 @@ const Single = () => {
 	};
 
 	return (
+
 		<div className="container mx-5 px-5 w-100 h-auto">
 			<div className="d-flex justify-content-between mb-3">
 				<h1 className="row text-white">{item.name}</h1>
+				<img className="card-img-top" src={imageUrl} alt={item.name} />
 				<button className="btn btn-outline-warning bg-transparent" onClick={() => handleAddFavorite(item)}>
 					<FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(item) ? 'red' : 'gray' }} />
 				</button>
@@ -103,6 +110,7 @@ const Single = () => {
 			</Link>
 
 		</div>
+
 	);
 };
 

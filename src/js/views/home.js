@@ -5,19 +5,19 @@ const cardData = [
   {
     id: "characters",
     title: "Characters",
-    image: "https://starwars-visualguide.com/assets/img/categories/character.jpg",
+    image: "https://lacuevadelguampa.com/cdn/shop/articles/star_wars_personajes.jpg?v=1616087475&width=2000",
     type: "characters"
   },
   {
     id: "vehicles",
     title: "Vehicles",
-    image: "https://starwars-visualguide.com/assets/img/categories/vehicles.jpg",
+    image: "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2015/12/17/1331765972884_2/los-vehiculos-star-wars-que-te-gustaria-ver-en-el-dakar",
     type: "vehicles"
   },
   {
     id: "planets",
     title: "Planets",
-    image: "https://starwars-visualguide.com/assets/img/categories/planets.jpg",
+    image: "https://lafuerzanoticias.wordpress.com/wp-content/uploads/2018/10/mustafar-tall.jpg?w=1536&h=768&crop=1",
     type: "planets"
   }
 ];
