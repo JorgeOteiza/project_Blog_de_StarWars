@@ -29,7 +29,7 @@ const PlanetList = () => {
 
   return (
     <div className="List-content mx-5 px-5">
-      <h1 className="bg-gradient text-center text-black opacity-50 font-monospace">Planets</h1>
+      <h1 className="bg-gradient text-center text-danger opacity-50 font-monospace">Planets</h1>
       <div className="row m-3 p-1">
         {planets.map(planet => (
           <div className="col-md-4 p-5" key={planet.uid}>

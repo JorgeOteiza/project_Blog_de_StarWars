@@ -38,8 +38,13 @@ export const FavoritesProvider = ({ children }) => {
     }));
   };
 
+  const isFavorite = (item) => {
+
+    return favorites[item.type].some(favorite => favorite.name === item.name);
+  };
+
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite }}>
       {children}
     </FavoritesContext.Provider>
   );

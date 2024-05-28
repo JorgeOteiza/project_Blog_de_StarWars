@@ -33,6 +33,10 @@ const Single = () => {
 
 	const handleAddFavorite = (item) => {
 		actions.addFavorite(item);
+
+		const updatedFavorites = store.favorites || {};
+
+		localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
 	};
 
 	const isFavorite = (item) => {
@@ -47,35 +51,35 @@ const Single = () => {
 			case 'people':
 				return (
 					<>
-						<p>Height: {item.height}</p>
-						<p>Mass: {item.mass}</p>
-						<p>Hair Color: {item.hair_color}</p>
-						<p>Skin Color: {item.skin_color}</p>
-						<p>Eye Color: {item.eye_color}</p>
-						<p>Birth Year: {item.birth_year}</p>
-						<p>Gender: {item.gender}</p>
+						<p className="text-info">Height: <span className="text-white">{item.height}</span></p>
+						<p className="text-info">Mass: <span className="text-white">{item.mass}</span></p>
+						<p className="text-info">Hair Color: <span className="text-white">{item.hair_color}</span></p>
+						<p className="text-info">Skin Color: <span className="text-white">{item.skin_color}</span></p>
+						<p className="text-info">Eye Color: <span className="text-white">{item.eye_color}</span></p>
+						<p className="text-info">Birth Year: <span className="text-white">{item.birth_year}</span></p>
+						<p className="text-info">Gender: <span className="text-white">{item.gender}</span></p>
 					</>
 				);
 			case 'vehicles':
 				return (
 					<>
-						<p>Model: {item.model}</p>
-						<p>Manufacturer: {item.manufacturer}</p>
-						<p>Cost in Credits: {item.cost_in_credits}</p>
-						<p>Length: {item.length}</p>
-						<p>Max Atmosphering Speed: {item.max_atmosphering_speed}</p>
-						<p>Crew: {item.crew}</p>
-						<p>Passengers: {item.passengers}</p>
+						<p className="text-info">Model: <span className="text-white">{item.model}</span></p>
+						<p className="text-info">Manufacturer: <span className="text-white">{item.manufacturer}</span></p>
+						<p className="text-info">Cost in Credits: <span className="text-white">{item.cost_in_credits}</span></p>
+						<p className="text-info">Length: <span className="text-white">{item.length}</span></p>
+						<p className="text-info">Max Atmosphering Speed: <span className="text-white">{item.max_atmosphering_speed}</span></p>
+						<p className="text-info">Crew: <span className="text-white">{item.crew}</span></p>
+						<p className="text-info">Passengers: <span className="text-white">{item.passengers}</span></p>
 					</>
 				);
 			case 'planets':
 				return (
 					<>
-						<p>Climate: {item.climate}</p>
-						<p>Diameter: {item.diameter}</p>
-						<p>Gravity: {item.gravity}</p>
-						<p>Population: {item.population}</p>
-						<p>Terrain: {item.terrain}</p>
+						<p className="text-info">Climate: <span className="text-white">{item.climate}</span></p>
+						<p className="text-info">Diameter: <span className="text-white">{item.diameter}</span></p>
+						<p className="text-info">Gravity:  <span className="text-white">{item.gravity}</span></p>
+						<p className="text-info">Population:  <span className="text-white">{item.population}</span></p>
+						<p className="text-info">Terrain:  <span className="text-white">{item.terrain}</span></p>
 					</>
 				);
 			default:
@@ -85,16 +89,19 @@ const Single = () => {
 
 	return (
 		<div className="container mx-5 px-5 w-100 h-auto">
-			<h1>{item.name}</h1>
+			<div className="d-flex justify-content-between mb-3">
+				<h1 className="row text-white">{item.name}</h1>
+				<button className="btn btn-outline-warning bg-transparent" onClick={() => handleAddFavorite(item)}>
+					<FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(item) ? 'red' : 'gray' }} />
+				</button>
+			</div>
 			{renderProperties()}
-			<button className="btn btn-outline-warning bg-light" onClick={() => handleAddFavorite(item)}>
-				<FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(item) ? 'red' : 'gray' }} />
-			</button>
 			<Link to="/">
-				<span className="btn btn-primary btn-lg" role="button">
+				<span className="btn btn-primary btn-lg mt-3" role="button">
 					Back home
 				</span>
 			</Link>
+
 		</div>
 	);
 };

@@ -27,14 +27,20 @@ export const Navbar = () => {
               Favorites {allFavorites.length}
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {allFavorites.length > [] ? (
+              {allFavorites.length > 0 ? (
                 allFavorites.map((favorite, index) => (
                   <li key={index} className="align-content-between d-flex dropdown-item justify-content-between p-1">
-                    <Link to={`/${favorite.type}/${favorite.id}`} className="dropdown-item m1 p-1">
+                    {/* Remove the Link component */}
+                    <span className="dropdown-item m1 p-1">
                       {favorite.name || favorite.title}
-                    </Link>
-                    <button className="btn btn-sm btn-danger" onClick={() => removeFavorite(favorite, favorite.type)}>
-                      &times;
+                    </span>
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={() => {
+                        removeFavorite(favorite, favorite.type);
+                      }}
+                    >
+                      ×
                     </button>
                   </li>
                 ))
