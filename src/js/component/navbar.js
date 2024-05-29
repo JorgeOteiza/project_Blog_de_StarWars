@@ -5,7 +5,6 @@ import "../../styles/navbar.css";
 
 export const Navbar = () => {
   const { favorites, removeFavorite } = useFavorites();
-
   const allFavorites = [
     ...favorites.characters,
     ...favorites.vehicles,
@@ -42,8 +41,9 @@ export const Navbar = () => {
                     </span>
                     <button
                       className="btn btn-sm btn-danger"
-                      onClick={() =>
-                        removeFavorite(favorite, favorite.type)}
+                      onClick={() => {
+                        removeFavorite(favorite, favorite.type);
+                      }}
                     >
                       ×
                     </button>

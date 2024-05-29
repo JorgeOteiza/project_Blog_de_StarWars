@@ -35,7 +35,7 @@ const Single = () => {
 	}
 
 	const isFavorite = (item) => {
-		return favorites[resource].some((favorite) => favorite.name === item.name);
+		return favorites[resource]?.some((favorite) => favorite.name === item.name);
 	};
 
 	const handleAddFavorite = (item) => {
@@ -84,12 +84,12 @@ const Single = () => {
 
 	return (
 		<div className="container mx-5 px-5 w-100 h-auto">
-			<h1 className="text-decoration-underline text-font-monospace text-white">{item.name}</h1>
+			<h1 className="text-decoration-underline text-font-monospace text-white mb-3 pb-3">{item.name}</h1>
 
-			<div className="d-flex justify-content-between">
+			<div className="d-flex hstack justify-content-between w-auto">
 				<div className="w-50 p-1">{renderProperties()}</div>
 				<div className="w-50">
-					<img className="card-img-top" src={imageUrl} alt={item.name} />
+					<img className="card-img-top w-auto h-auto" src={imageUrl} alt={item.name} />
 				</div>
 			</div>
 
@@ -99,7 +99,7 @@ const Single = () => {
 						Back home
 					</span>
 				</Link>
-				<button className="bg-transparent border btn btn-lg btn-outline-ligt m-2 rounded-pill" onClick={() => handleAddFavorite(item)}>
+				<button className="btn btn-lg btn-outline-light bg-transparent border m-2 rounded-pill" onClick={() => handleAddFavorite(item)}>
 					<FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(item) ? 'red' : 'gray' }} />
 				</button>
 			</div>
