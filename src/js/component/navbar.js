@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useFavorites } from "../store/favorites.Context.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
@@ -34,18 +36,18 @@ export const Navbar = () => {
                 allFavorites.map((favorite, index) => (
                   <li
                     key={index}
-                    className="align-content-between d-flex dropdown-item justify-content-between p-1"
+                    className="align-content-between d-flex dropdown-item justify-content-between p-1 border-top border-bottom"
                   >
                     <span className="dropdown-item m1 p-1">
                       {favorite.name || favorite.title}
                     </span>
                     <button
-                      className="btn btn-sm btn-danger"
+                      className="btn"
                       onClick={() => {
                         removeFavorite(favorite, favorite.type);
                       }}
                     >
-                      ×
+                      <FontAwesomeIcon icon={faTrashCan} />
                     </button>
                   </li>
                 ))
