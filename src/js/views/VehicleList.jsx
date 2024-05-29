@@ -29,7 +29,7 @@ const VehicleList = () => {
 
   return (
     <div className="List-content mx-5 px-5">
-      <h1 className="bg-gradient text-center text-danger opacity-50 font-monospace">Vehicles</h1>
+      <h1 className="btn bg-gradient text-center text-danger opacity-50 font-monospace">Vehicles</h1>
       <div className="row m-3 p-1">
         {vehicles.map(vehicle => (
           <div className="col-md-4 p-5" key={vehicle.uid}>

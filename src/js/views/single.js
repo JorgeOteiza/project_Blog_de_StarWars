@@ -91,7 +91,7 @@ const Single = () => {
 			<h1 className="text-decoration-underline text-font-monospace text-white">{item.name}</h1>
 
 			<div className="d-flex hstack justify-content-between w-auto">
-				<div className="w-50 p-1">{renderProperties()}</div>
+				<div className="w-50 p-1 h4">{renderProperties()}</div>
 				<div className="w-50">
 					<img className="card-img-top w-auto h-auto" src={imageUrl} alt={item.name} />
 				</div>
@@ -103,7 +103,7 @@ const Single = () => {
 						Back home
 					</span>
 				</Link>
-				<button className="btn btn-lg btn-outline-light bg-transparent border m-2 rounded-pill" onClick={() => handleAddFavorite(item)}>
+				<button className="btn btn-lg btn-outline-light bg-transparent border m-2 mt-5 rounded-pill" onClick={() => handleAddFavorite(item)}>
 					<FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(item) ? 'red' : 'gray' }} />
 				</button>
 			</div>
