@@ -1,16 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Context } from "../store/appContext";
-import PropTypes from "prop-types";
+import { useFavorites } from "../store/favorites.Context.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
 const Single = () => {
-	const { store, actions } = useContext(Context);
 	const { resource, id } = useParams();
 	const [item, setItem] = useState(null);
 	const [imageUrl, setImageUrl] = useState(null);
-
+	const { favorites, addFavorite, removeFavorite } = useFavorites();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -32,77 +31,63 @@ const Single = () => {
 	}, [resource, id]);
 
 	if (!item) {
-		return <div className="container d-flex justify-context-center text-mute m-5 p-3">Loading...</div>;
+		return <div className="container d-flex justify-content-center text-muted m-5 p-3">Loading...</div>;
 	}
+
+	const isFavorite = (item) => {
+		return favorites[resource].some((favorite) => favorite.name === item.name);
+	};
 
 	const handleAddFavorite = (item) => {
 		if (isFavorite(item)) {
-			removeFavorite(item, item - type)
+			removeFavorite(item, resource);
 		} else {
-			actions.addFavorite(item, item - type);
+			addFavorite(item, resource);
 		}
-		const updatedFavorites = store.favorites || {};
-
-		localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-	};
-
-	const isFavorite = (item) => {
-		if (!store.favorites || !store.favorites[resource]) {
-			return false;
-		}
-		return store.favorites[resource].some(favorite => favorite.name === item.name);
 	};
 
 	const renderProperties = () => {
-		switch (resource) {
-			case 'people':
-				return (
-					<>
-						<p className="text-info mt-4">Height: <span className="text-white">{item.height}</span></p>
-						<p className="text-info">Mass: <span className="text-white">{item.mass}</span></p>
-						<p className="text-info">Hair Color: <span className="text-white">{item.hair_color}</span></p>
-						<p className="text-info">Skin Color: <span className="text-white">{item.skin_color}</span></p>
-						<p className="text-info">Eye Color: <span className="text-white">{item.eye_color}</span></p>
-						<p className="text-info">Birth Year: <span className="text-white">{item.birth_year}</span></p>
-						<p className="text-info mb-1">Gender: <span className="text-white">{item.gender}</span></p>
-					</>
-				);
-			case 'vehicles':
-				return (
-					<>
-						<p className="text-info mt-4">Model: <span className="text-white">{item.model}</span></p>
-						<p className="text-info">Manufacturer: <span className="text-white">{item.manufacturer}</span></p>
-						<p className="text-info">Cost in Credits: <span className="text-white">{item.cost_in_credits}</span></p>
-						<p className="text-info">Length: <span className="text-white">{item.length}</span></p>
-						<p className="text-info">Max Atmosphering Speed: <span className="text-white">{item.max_atmosphering_speed}</span></p>
-						<p className="text-info">Crew: <span className="text-white">{item.crew}</span></p>
-						<p className="text-info mb-1">Passengers: <span className="text-white">{item.passengers}</span></p>
-					</>
-				);
-			case 'planets':
-				return (
-					<>
-						<p className="text-info mt-4">Climate: <span className="text-white">{item.climate}</span></p>
-						<p className="text-info">Diameter: <span className="text-white">{item.diameter}</span></p>
-						<p className="text-info">Gravity:  <span className="text-white">{item.gravity}</span></p>
-						<p className="text-info">Population:  <span className="text-white">{item.population}</span></p>
-						<p className="text-info mb-1">Terrain:  <span className="text-white">{item.terrain}</span></p>
-					</>
-				);
-			default:
-				return null;
-		}
+		const properties = {
+			people: [
+				["Height", item.height],
+				["Mass", item.mass],
+				["Hair Color", item.hair_color],
+				["Skin Color", item.skin_color],
+				["Eye Color", item.eye_color],
+				["Birth Year", item.birth_year],
+				["Gender", item.gender],
+			],
+			vehicles: [
+				["Model", item.model],
+				["Manufacturer", item.manufacturer],
+				["Cost in Credits", item.cost_in_credits],
+				["Length", item.length],
+				["Max Atmosphering Speed", item.max_atmosphering_speed],
+				["Crew", item.crew],
+				["Passengers", item.passengers],
+			],
+			planets: [
+				["Climate", item.climate],
+				["Diameter", item.diameter],
+				["Gravity", item.gravity],
+				["Population", item.population],
+				["Terrain", item.terrain],
+			],
+		};
+
+		return properties[resource]?.map(([label, value]) => (
+			<p className="text-info" key={label}>
+				{label}: <span className="text-white">{value}</span>
+			</p>
+		));
 	};
 
 	return (
-
 		<div className="container mx-5 px-5 w-100 h-auto">
-			<h1 className="text-font-monospace text-white">{item.name}</h1>
+			<h1 className="text-decoration-underline text-font-monospace text-white">{item.name}</h1>
 
 			<div className="d-flex justify-content-between">
-				<div className="w-50 p-1">
-					{renderProperties()}
-				</div>
+				<div className="w-50 p-1">{renderProperties()}</div>
 				<div className="w-50">
 					<img className="card-img-top" src={imageUrl} alt={item.name} />
 				</div>
@@ -114,17 +99,16 @@ const Single = () => {
 						Back home
 					</span>
 				</Link>
-				<button className="btn btn-outline-warning bg-transparent m-2" onClick={() => handleAddFavorite(item)}>
+				<button className="bg-transparent border btn btn-lg btn-outline-ligt m-2 rounded-pill" onClick={() => handleAddFavorite(item)}>
 					<FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(item) ? 'red' : 'gray' }} />
 				</button>
 			</div>
 		</div>
-
 	);
 };
 
 Single.propTypes = {
-	match: PropTypes.object
+	match: PropTypes.object,
 };
 
 export default Single;
