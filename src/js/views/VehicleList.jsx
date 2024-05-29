@@ -34,7 +34,7 @@ const VehicleList = () => {
         {vehicles.map(vehicle => (
           <div className="col-md-4 p-5" key={vehicle.uid}>
             <div className="card">
-              <img className="card-img-top" src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`} alt={vehicle.name} />
+              <img className="card-img-top h-100" src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`} alt={vehicle.name} />
               <div className="card-body">
                 <h5 className="card-title mb-5 text-black font-monospace">{vehicle.name}</h5>
                 <div className="container d-flex justify-content-between bottom-0 mb-2 position-absolute start-0">

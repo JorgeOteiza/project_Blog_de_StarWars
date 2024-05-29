@@ -19,9 +19,11 @@ export const FavoritesProvider = ({ children }) => {
       return;
     }
 
+    const favoriteWithType = { ...favorite, type };
+
     setFavorites((prevFavorites) => ({
       ...prevFavorites,
-      [type]: [...prevFavorites[type], favorite],
+      [type]: [...prevFavorites[type], favoriteWithType],
     }));
   };
 

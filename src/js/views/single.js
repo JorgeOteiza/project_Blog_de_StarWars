@@ -99,11 +99,11 @@ const Single = () => {
 
 			<div className="d-flex justify-content-between">
 				<Link to="/">
-					<span className="btn btn-primary btn-lg mt-5" role="button">
+					<span className="btn btn-dark mt-5" role="button">
 						Back home
 					</span>
 				</Link>
-				<button className="btn btn-lg btn-outline-light bg-transparent border m-2 mt-5 rounded-pill" onClick={() => handleAddFavorite(item)}>
+				<button className="bg-transparent border btn btn-lg btn-outline-light m-2 mt-5 rounded-pill" onClick={() => handleAddFavorite(item)}>
 					<FontAwesomeIcon icon={faHeart} style={{ color: isFavorite(item) ? 'red' : 'gray' }} />
 				</button>
 			</div>
