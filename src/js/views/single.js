@@ -20,7 +20,11 @@ const Single = () => {
 				}
 				const data = await response.json();
 				setItem(data.result.properties);
-				const imageEndpoint = data.result.image || `https://starwars-visualguide.com/assets/img/${resource}/${id}.jpg`;
+				const imageEndpoint =
+					resource === "people" ? `https://starwars-visualguide.com/assets/img/characters/${id}.jpg` :
+						resource === "vehicles" ? `https://starwars-visualguide.com/assets/img/vehicles/${id}.jpg` :
+							resource === "planets" ? `https://starwars-visualguide.com/assets/img/planets/${id}.jpg` :
+								null;
 				setImageUrl(imageEndpoint);
 			} catch (error) {
 				console.error(error);
@@ -31,7 +35,7 @@ const Single = () => {
 	}, [resource, id]);
 
 	if (!item) {
-		return <div className="container d-flex justify-content-center text-muted m-5 p-3">Loading...</div>;
+		return <div>Loading...</div>;
 	}
 
 	const isFavorite = (item) => {
@@ -84,7 +88,7 @@ const Single = () => {
 
 	return (
 		<div className="container mx-5 px-5 w-100 h-auto">
-			<h1 className="text-decoration-underline text-font-monospace text-white mb-3 pb-3">{item.name}</h1>
+			<h1 className="text-decoration-underline text-font-monospace text-white">{item.name}</h1>
 
 			<div className="d-flex hstack justify-content-between w-auto">
 				<div className="w-50 p-1">{renderProperties()}</div>
