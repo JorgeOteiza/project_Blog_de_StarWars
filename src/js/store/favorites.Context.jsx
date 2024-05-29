@@ -1,11 +1,8 @@
-// favorites.Context.jsx
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 const FavoritesContext = createContext();
 
-export const useFavorites = () => {
-  return useContext(FavoritesContext);
-};
+export const useFavorites = () => useContext(FavoritesContext);
 
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState({
@@ -14,7 +11,14 @@ export const FavoritesProvider = ({ children }) => {
     planets: []
   });
 
+  const validTypes = ["characters", "vehicles", "planets"];
+
   const addFavorite = (favorite, type) => {
+    if (!validTypes.includes(type)) {
+      console.error('invalid favorite type: ${type}')
+      return;
+    }
+
     setFavorites((prevFavorites) => ({
       ...prevFavorites,
       [type]: [...prevFavorites[type], favorite],
@@ -22,6 +26,10 @@ export const FavoritesProvider = ({ children }) => {
   };
 
   const removeFavorite = (favorite, type) => {
+    if (!validTypes.includes(type)) {
+      console.error(`Invalid favorite type: ${type}`);
+      return;
+    }
     setFavorites((prevFavorites) => ({
       ...prevFavorites,
       [type]: prevFavorites[type].filter((item) => item !== favorite),
@@ -31,8 +39,7 @@ export const FavoritesProvider = ({ children }) => {
   useEffect(() => {
     const favoritesString = localStorage.getItem("favorites");
     if (favoritesString) {
-      const favoritesObject = JSON.parse(favoritesString);
-      setFavorites(favoritesObject);
+      setFavorites(JSON.parse(favoritesString));
     }
   }, []);
 
@@ -46,6 +53,5 @@ export const FavoritesProvider = ({ children }) => {
     </FavoritesContext.Provider>
   );
 };
-
 
 export default FavoritesContext;

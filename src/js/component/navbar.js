@@ -1,28 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useFavorites } from "../store/favorites.Context.jsx";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
-  const { favorites, removeFavorite, setFavorites } = useFavorites();
-  const [localFavorites, setLocalFavorites] = useState(favorites);
-
-  useEffect(() => {
-    const favoritesString = localStorage.getItem("favorites");
-    if (favoritesString) {
-      const favoritesObject = JSON.parse(favoritesString);
-      setFavorites({ ...favorites, ...favoritesObject });
-    }
-  }, []);
-
-  useEffect(() => {
-    setLocalFavorites(favorites);
-  }, [favorites]);
+  const { favorites, removeFavorite } = useFavorites();
 
   const allFavorites = [
-    ...localFavorites.characters,
-    ...localFavorites.vehicles,
-    ...localFavorites.planets,
+    ...favorites.characters,
+    ...favorites.vehicles,
+    ...favorites.planets,
   ];
 
   return (
@@ -55,9 +42,8 @@ export const Navbar = () => {
                     </span>
                     <button
                       className="btn btn-sm btn-danger"
-                      onClick={() => {
-                        removeFavorite(favorite, favorite.type);
-                      }}
+                      onClick={() =>
+                        removeFavorite(favorite, favorite.type)}
                     >
                       ×
                     </button>

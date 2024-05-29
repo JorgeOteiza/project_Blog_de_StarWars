@@ -32,7 +32,7 @@ const Single = () => {
 	}, [resource, id]);
 
 	if (!item) {
-		return <div>Loading...</div>;
+		return <div className="container d-flex justify-context-center text-mute m-5 p-3">Loading...</div>;
 	}
 
 	const handleAddFavorite = (item) => {
