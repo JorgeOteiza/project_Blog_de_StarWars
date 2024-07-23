@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 
-const port = 3000;
+const port = 3001;
 let publicUrl = `ws://localhost:${port}/ws`;
 
 //only for gitpod
