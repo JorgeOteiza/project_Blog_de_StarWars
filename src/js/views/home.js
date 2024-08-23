@@ -17,7 +17,7 @@ const cardData = [
   {
     id: "planets",
     title: "Planets",
-    image: "https://lafuerzanoticias.wordpress.com/wp-content/uploads/2018/10/mustafar-tall.jpg?w=1536&h=768&crop=1",
+    image: "https://static.wikia.nocookie.net/starwars/images/d/d3/Batuu-system.png/revision/latest?cb=20200822003007",
     type: "planets"
   }
 ];
