@@ -21,16 +21,24 @@ module.exports = merge(common, {
   mode: "development",
   devtool: "cheap-module-source-map",
   devServer: {
-    port,
-    hot: true,
-    allowedHosts: "all",
-    historyApiFallback: true,
-    static: {
-      directory: path.resolve(__dirname, "dist"),
-    },
     client: {
-      webSocketURL: publicUrl,
+      webSocketURL: {
+        hostname: 'localhost',
+        pathname: '/ws',
+        port: 3001,
+        protocol: 'ws', // Cambia 'wss' a 'ws' para WebSocket sin cifrar
+      },
+      port,
+      hot: true,
+      allowedHosts: "all",
+      historyApiFallback: true,
+      static: {
+        directory: path.resolve(__dirname, "dist"),
+      },
+      client: {
+        webSocketURL: publicUrl,
+      },
     },
-  },
-  plugins: [],
-});
+    plugins: [],
+  });
+
