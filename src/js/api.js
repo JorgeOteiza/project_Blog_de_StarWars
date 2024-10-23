@@ -1,19 +1,31 @@
-const API_KEY = "your_api_key";
-const SWAPI_BASE_URL = "https://api.starwars.com";
-const LOCAL_API_BASE_URL = process.env.REACT_APP_LOCAL_API_URL;
+const BASE_API_URL = "https://stunning-couscous-69gv9qw7gg9qcrpqp-3000.app.github.dev/";
 
 const fetchSWAPIData = async (endpoint) => {
-  const response = await fetch(
-    `${SWAPI_BASE_URL}/${endpoint}?api_key=${API_KEY}`
-  );
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${BASE_API_URL}/${endpoint}`);
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching SWAPI data:", error);
+    return null;
+  }
 };
 
 const fetchLocalAPIData = async (endpoint) => {
-  const response = await fetch(`${LOCAL_API_BASE_URL}/${endpoint}`);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${BASE_API_URL}/${endpoint}`);
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching local API data:", error);
+    return null;
+  }
 };
 
 export { fetchSWAPIData, fetchLocalAPIData };
