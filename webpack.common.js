@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
-  entry: "./project_Blog_de_StarWars/src/js/index.js",
+  entry: "./src/js/index.js",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
@@ -39,7 +39,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      favicon: "4geeks.ico",
       template: "template.html",
     }),
     new Dotenv({ safe: true, systemvars: true }),

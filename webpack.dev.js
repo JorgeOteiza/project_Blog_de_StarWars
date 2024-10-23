@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const port = 3001;
 let publicUrl = `ws://localhost:${port}/ws`;
@@ -18,19 +19,18 @@ if (process.env.CODESPACE_NAME) {
 }
 
 module.exports = merge(common, {
-  mode: "development",
-  devtool: "cheap-module-source-map",
+  mode: 'development',
+  devtool: 'cheap-module-source-map',
   devServer: {
     port,
     hot: true,
-    allowedHosts: "all",
+    allowedHosts: 'all',
     historyApiFallback: true,
     static: {
-      directory: path.resolve(__dirname, "dist"),
+      directory: path.resolve(__dirname, 'dist'),
     },
     client: {
       webSocketURL: publicUrl,
     },
   },
-  plugins: [],
 });

@@ -5,8 +5,8 @@ export const Footer = () => (
     <p>Sitio oficial:{" "}
       <a href="https://www.starwars.com/">StarWars</a>
     </p>
-    <p>Creador: {" "}
-      <a href="https://github.com/JorgeOteiza">Github</a>
+    <p>Hecho con <i className="fa fa-heart text-danger" /> por: {" "}
+      <a href="https://github.com/JorgeOteiza">Jorge Oteiza</a>
     </p>
   </footer>
 );
