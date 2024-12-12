@@ -32,7 +32,7 @@ const VehicleList = () => {
       <h1 className="btn bg-gradient text-center text-danger opacity-50 font-monospace">Vehicles</h1>
       <div className="row row-cols-lg-4 m-3 p-1">
         {vehicles.map(vehicle => (
-          <div className="col-md-4 p-5" key={vehicle.uid}>
+          <div className="col-md-4 p-3" key={vehicle.uid}>
             <div className="card">
               <img className="card-img-top h-100" src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`} alt={vehicle.name} />
               <div className="card-body">

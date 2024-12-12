@@ -69,3 +69,35 @@
     background-color: #388e3c; /* Color más oscuro en hover */
   }
   
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px); /* Inicia desplazada hacia abajo */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0); /* Termina en su posición original */
+    }
+  }
+  
+  .card.home {
+    animation: fadeInUp 0.8s ease-in-out; /* Aplica la animación */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición en hover */
+  }
+  
+  .card.home:hover {
+    transform: scale(1.1); /* Efecto de zoom */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    border-color: #ff6f61; /* Color del borde al pasar el ratón */
+  }
+  
+  .card-img-top {
+    height: 200px; /* Ajusta la altura de las imágenes */
+    object-fit: cover; /* Ajusta la imagen al tamaño del contenedor */
+    transition: transform 0.3s ease; /* Transición para la imagen */
+  }
+  
+  .card.home:hover .card-img-top {
+    transform: scale(1.05); /* Zoom en la imagen al hacer hover */
+  }
+  
