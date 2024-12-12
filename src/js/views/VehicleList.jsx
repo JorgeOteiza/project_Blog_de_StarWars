@@ -4,6 +4,8 @@ import { useFavorites } from "../store/favorites.Context.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
+
+
 const VehicleList = () => {
   const [vehicles, setVehicles] = useState([]);
   const { addFavorite, removeFavorite, favorites } = useFavorites();

@@ -31,7 +31,7 @@ const CharacterList = () => {
 
   return (
     <div className="List-content CharacterList mx-5 px-5">
-      <h1 className="btn bg-gradient text-center text-danger opacity-50 font-monospace">Characters</h1>
+      <h1 className="btn bg-gradient text-center text-primary opacity-50 font-monospace">Characters</h1>
       <div className="row row-cols-lg-4 m-3 p-1">
         {characters.map(character => (
           <div className="col-md-4 p-3" key={character.uid}>

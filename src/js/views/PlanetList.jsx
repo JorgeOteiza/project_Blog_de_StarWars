@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useFavorites } from "../store/favorites.Context.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import "../../styles/Lists.css";
+
 
 const PlanetList = () => {
   const [planets, setPlanets] = useState([]);
