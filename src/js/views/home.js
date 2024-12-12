@@ -5,7 +5,7 @@ const cardData = [
   {
     id: "characters",
     title: "Characters",
-    image: "https://lacuevadelguampa.com/cdn/shop/articles/star_wars_personajes.jpg?v=1616087475&width=2000",
+    image: "https://cloudfront-us-east-1.images.arcpublishing.com/larazondemexico/DDNL2XJV5VBZDI3PPNZWZBAAWI.jpeg",
     type: "characters"
   },
   {
@@ -29,7 +29,7 @@ export const Home = () => {
       <div className="card-container">
         <div className="col-md-12 container d-flex justify-content-around my-5 py-5 row-cols-lg-4 w-auto mx-auto">
           {cardData.map(item => (
-            <Card key={item.id} item={item} type={item.type} />
+            <Card key={item.id} item={item} path={`/${item.type}`} />
           ))}
         </div>
       </div>

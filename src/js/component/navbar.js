@@ -28,7 +28,7 @@ export const Navbar = () => {
         </Link>
         <div className="ml-auto my-3">
           <div className="dropdown">
-            <button className="border-danger button-26 font-monospace dropdown-toggle opacity-75" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <button className="bg-transparent border-2 border-info button-26 dropdown-toggle font-monospace text-danger" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               Favorites {allFavorites.length}
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
